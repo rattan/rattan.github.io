@@ -1,7 +1,7 @@
 ---
 title: "this call"
 date: 2022-05-02 21:10:30
-categories: c++
+categories: cpp
 ---
 1. 멤버함수의 호출 원리
    - 객체가 함수의 1번째 인자(this) 로 추가 된다. - this call
