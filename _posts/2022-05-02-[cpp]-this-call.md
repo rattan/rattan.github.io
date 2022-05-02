@@ -1,6 +1,8 @@
 ---
+published: true
 title: "this call"
-date: 2022-05-02 21:10:30
+date: 2022-04-29 20:46:25
+last_modified_at: 2022-05-02 21:38:46
 categories: cpp
 ---
 1. 멤버함수의 호출 원리
