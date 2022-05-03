@@ -39,7 +39,7 @@ int main() {
 }
 ```
 >error code
->- [C2597 비정적 멤버 참조는 특정 개체에 상대적이어야 합니다.](https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-2/compiler-error-c2597)
+>- [C2597 비정적 멤버 참조는 특정 개체에 상대적이어야 합니다.](https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-2/compiler-error-c2597){:target="_blank"}
 ---
 1. 일반 함수 포인터에 멤버함수의 주소를 담을 수 없다. this 때문에.
 2. 일반 함수 포인터에 static 멤버함수의 주소를 담을 수 있다.
@@ -74,8 +74,8 @@ int main() {
 }
 ```
 >error code
->- [C2440 "void(Dialog::*)()"형식의 값을 사용하여 "void(*)()"형식의 엔터티를 초기화할 수 없습니다.](https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-1/compiler-error-c2440)
->- [C2064 명백한 호출의 괄호 앞에 오는 식에는 함수 (포인터) 형식이 있어야 합니다.](https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-1/compiler-error-c2064)
+>- [C2440 "void(Dialog::*)()"형식의 값을 사용하여 "void(*)()"형식의 엔터티를 초기화할 수 없습니다.](https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-1/compiler-error-c2440){:target="_blank"}
+>- [C2064 명백한 호출의 괄호 앞에 오는 식에는 함수 (포인터) 형식이 있어야 합니다.](https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-1/compiler-error-c2064){:target="_blank"}
 >- [C2039 클래스 "Dialog"에 "f3" 멤버가 없습니다.](https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-1/compiler-error-c2039)
 ---
 this 관리의 어려움
