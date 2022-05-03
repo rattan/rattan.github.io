@@ -2,7 +2,7 @@
 published: true
 title: "상수 함수"
 date: 2022-05-03 21:40:38
-last_modified_at: 2022-05-03 21:40:34
+last_modified_at: 2022-05-03 21:40:38
 categories: cpp
 ---
 ```cpp
