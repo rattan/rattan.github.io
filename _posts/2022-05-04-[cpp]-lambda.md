@@ -1,8 +1,8 @@
 ---
 published: true
 title: "람다"
-date: 2022-05-04 22:19:58
-last_modified_at: 2022-05-04 22:20:00
+date: 2022-05-04 22:19:58 +9:00
+last_modified_at: 2022-05-04 22:20:00 +9:00
 categories: cpp
 ---
 인라인 함수와 포인터 관계
