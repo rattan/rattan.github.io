@@ -1,9 +1,9 @@
 ---
 published: true
 title: "클래스 템플릿"
-date: 
-last_modified_at: 
-categorise: 
+date: 2022-05-05 17:23:36 +9:00
+last_modified_at: 2022-05-05 17:23:39 +9:00
+categorise: cpp
 ---
 ```cpp
 template<typename T>
