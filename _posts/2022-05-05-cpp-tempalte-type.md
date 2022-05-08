@@ -2,7 +2,7 @@
 published: true
 title: "템플릿 타입"
 date: 2022-05-05 18:00:02 +9:00
-last_modified_at: 2022-05-05 18:00:05 +9:00
+last_modified_at: 2022-05-08 12:35:52 +9:00
 categories: cpp
 ---
 ```cpp
@@ -32,8 +32,11 @@ int main() {
     foo(aaa);
 }
 ```
+[C3861]: https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-2/compiler-error-c3861
+[C2082]: https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-1/compiler-error-c2082
 > error code
->-
+>- [C3861][]
+>- [C2082][]
 ---
 모든 tempalte 기반 컨테이너에는 저장하는 타입이 있다.<p>
 이때, 그 타입을 외부에서 알고싶을때.

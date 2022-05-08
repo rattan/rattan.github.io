@@ -2,7 +2,7 @@
 published: true
 title: "클래스 템플릿"
 date: 2022-05-05 17:23:36 +9:00
-last_modified_at: 2022-05-05 17:23:39 +9:00
+last_modified_at: 2022-05-08 12:38:17 +9:00
 categorise: cpp
 ---
 ```cpp
@@ -42,14 +42,14 @@ void stack<T>::push(T a) {
 }
 
 int main() {
-    stack s1;                   // error.
+    stack s1;                   // error C2955: 'stack': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
                                 // stack 은 타입이 아니라 틀(template)이다.
     stack<int> s2;              // ok. stack<int> 는 타입니다.
 }
 ```
-[stack s1]: 
+[C2955 클래스 템플릿 "stack"에 대한 인수 목록이 없습니다.]: https://docs.microsoft.com/ko-kr/cpp/error-messages/compiler-errors-2/compiler-error-c2955
 > error code
->- [stack s1][]
+>- [C2955 클래스 템플릿 "stack"에 대한 인수 목록이 없습니다.][]
 ---
 왜 클래스 템플릿의 멤버함수 템플릿을 사용하는가?
 ```cpp
