@@ -2,7 +2,7 @@
 published: true
 title: "가변인자 템플릿"
 date: 2022-05-08 19:26:52 +9:00
-last_modified_at: 2022-05-08 19:26:54 +9:00
+last_modified_at: 2022-05-08 21:16:57 +9:00
 categories: cpp
 ---
 가변인자 템플릿
@@ -102,13 +102,13 @@ int main() {
 #include <iostream>
 
 template<typename T, typename... Types>
-class xtuple: public xtuple<Types...> {
+class xtuple : public xtuple<Types...> {
 public:
     T value;
-    
+
     xtuple() {}
-    xtuple(const T &a, Types... args): value(a), xtuple<Types...>(args...) {}
-    enum { N = xtuple<Types...>::N + 1};
+    xtuple(const T& a, Types... args) : value(a), xtuple<Types...>(args...) {}
+    enum { N = xtuple<Types...>::N + 1 };
 };
 
 // 이미 xtuple이 위에 있으므로, 새로운 xtuple 을 만들지 않고 부분 전문화 해야 한다.
@@ -118,12 +118,12 @@ class xtuple<T> {                       // 부분 전문화 버전
 public:
     T value;
     xtuple() {}
-    xtuple(const T &a): value(a) {}
+    xtuple(const T& a) : value(a) {}
     enum { N = 1 };
 };
 
 template<typename T>
-int xtuple_size(T &a) {
+int xtuple_size(T& a) {
     return T::N;
 }
 
@@ -133,11 +133,9 @@ int xtuple_size(T &a) {
 // 이 경우, 구조체 몸체{} 없이 선언만 있어도 된다.
 // 단 선언 자체는 꼭 있어야 부분 전문화 버전을 만들 수 있다.
 template<int N, typename T>
-struct xtuple_type {
-    typedef T type;
-};
+struct xtuple_type;
 
-// 0 번째 타입을 요구 할 때를 위한 부분 전문화
+// 0 번째 를 요구 할 때를 위한 부분 전문화
 template<typename T, typename... Types>
 struct xtuple_type<0, xtuple<T, Types...>> {
     typedef T type;
@@ -147,33 +145,34 @@ struct xtuple_type<0, xtuple<T, Types...>> {
 // 0 이 아닌 경우
 template<int N, typename T, typename... Types>
 struct xtuple_type<N, xtuple<T, Types...>> {
-    typedef typename xtuple_type<N-1, xtuple<Types...>>::type type;
-    typedef typename xtuple_type<N-1, xtuple<Types...>>::tuple_type tuple_type;
+    typedef typename xtuple_type<N - 1, xtuple<Types...>>::type type;
+    typedef typename xtuple_type<N - 1, xtuple<Types...>>::tuple_type tuple_type;
 };
 
 // xtuple_type 을 확인하기 위한 함수
 // VC 에서는 이 함수가 컴파일 잘 되는데 gcc 에서는 안된다...?
 template<int N, typename T>
-void print_type(const T &a) {
-   std::cout<<typeid(xtuple_type<N, T>::type).name()<<std::endl;
+void print_type(const T& a) {
+    std::cout << typeid(xtuple_type<N, T>::type).name() << std::endl;
 }
 
-template<size_t N, typename T>
-xtuple_type<N, T>::type& xget(T& tp)
-{
+// xtuple 값을 받아오기 위함 함수
+template<int N, typename T>
+auto xget(T& tp) {                              // auto == xtuple_type<N, T>::type& 이어야 할거같은데, xtuple_type 을 넣으면 컴파일 에러가 난다;
     return static_cast<typename xtuple_type<N, T>::tuple_type>(tp).value;
 }
+
 int main() {
     xtuple<int, char, double, short> t4(1, 'c', 3.3, 4);
-    
-    std::cout<<xtuple_size(t4)<<std::endl;  // 4
-    
-//    print_type<1>(t4);                      // char
-    std::cout<<typeid(xtuple_type<0, xtuple<int, char, double, short>>::type).name()<<std::endl;
+
+    std::cout << xtuple_size(t4) << std::endl;  // 4
+
+    print_type<1>(t4);                          // char
+    std::cout << typeid(xtuple_type<0, xtuple<int, char, double, short>>::type).name() << std::endl;
     // gcc 에서 이건 또 된다.
     // 함수 내부랑 컴파일 했을때 T 타입이 완전히 동일한데 왜 함수안에선 안되는지 모르겠다;
-    
-    std::cout<<xget<1>(t4)<<std::endl;
+
+    std::cout << xget<1>(t4) << std::endl;      // c
 }
 ```
 ---
