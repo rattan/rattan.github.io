@@ -1,8 +1,8 @@
 ---
 published: true
 title: "단위전략"
-date: 
-last_modified_at: 
+date: 2022-05-08 22:46:03 +9:00
+last_modified_at: 2022-05-08 22:46:05 +9:00
 categories: cpp
 ---
 단위 전략(policy base) 디자인 기술
