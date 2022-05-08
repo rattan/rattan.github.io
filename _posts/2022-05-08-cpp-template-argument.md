@@ -2,7 +2,7 @@
 published: true
 title: "템플릿 인자"
 date: 2022-05-08 16:31:14 +9:00
-last_modified_at: 2022-05-08 16:31:15 +9:00
+last_modified_at: 2022-05-08 16:36:06 +9:00
 categories: cpp
 ---
 템플릿 인자
@@ -123,65 +123,5 @@ public:
 int main() {
     stack<int, std::list> s;
     s.push(10);
-}
-```
-가변인자 템플릿
-```cpp
-#include <iostream>
-
-// 가변인자 템플릿. c++11 기술
-template<typename ... Types>
-void foo(Types ... args) {}
-
-// 가변인자 클래스 템플릿
-template<typename ... Types>
-class Test {};
-
-int main() {
-    foo(1);
-    foo(1, 3.3);    // Types: int, double
-                    // args: 1, 3.3
-    Test<int> t1;
-    Test<int, double> t2;
-}
-```
----
-```cpp
-#include <iostream>
-
-// 가변인자 템플릿. c++11 기술
-template<typename ... Types>
-void goo(Types ... args) {
-    std::cout<<"goo"<<std::endl;
-}
-
-void hoo(int a, double d, char c) {
-    std::cout<<"hoo"<<std::endl;
-}
-
-void joo(int *a, double *d, char *c) {
-    std::cout<<"joo"<<std::endl;
-}
-
-// Types: 여러개의 타입을 가지고 있는 타입의 집합
-// args: 여러개의 값을 가지고 있는 인자 집합: parameter pack
-template<typename ... Types>
-void foo(Types ... args) {
-    // parameter pack 안에 인자 개수를 알고 싶다면
-    std::cout<<sizeof...(args)<<std::endl;
-    std::cout<<sizeof...(Types)<<std::endl;
-    
-    // parameter pack  을 다른 함수로 전달하는 방법
-    goo(args...);
-    hoo(args...);
-    joo(&args...);
-}
-
-int main() {
-    foo(1, 3.3, 'a');   // 3
-                        // 3
-                        // goo
-                        // hoo
-                        // joo
 }
 ```
