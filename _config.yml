@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "aqua" # "air", "aqua", "contrast", "dark", "dirt", "
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "rattan blog"
+title                    : "blog: mutex"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Your Name"
@@ -109,10 +109,10 @@ words_per_minute         : 200
 author:
   name             : "rattan"
   avatar           : "https://avatars.githubusercontent.com/u/5326426?s=400&u=8239a5d5eba4d69ad1952b973d79d3f872a0a6a6"
-  bio              : "similarity developer"
+  bio              : "유사 개발자🛠"
   location         : "Kr"
   email            : "rattan32g@gmail.com"
-#   links:
+  links:
 #     - label: "Email"
 #       icon: "fas fa-fw fa-envelope-square"
 #       url: mailto:rattan32g@gmail.com
@@ -125,9 +125,9 @@ author:
 #     - label: "Facebook"
 #       icon: "fab fa-fw fa-facebook-square"
 #       # url: "https://facebook.com/"
-#     - label: "GitHub"
-#       icon: "fab fa-fw fa-github"
-#       # url: "https://github.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/rattan"
 #     - label: "Instagram"
 #       icon: "fab fa-fw fa-instagram"
 #       # url: "https://instagram.com/"
@@ -231,7 +231,7 @@ plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
+  # - jekyll-feed
   - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
@@ -239,7 +239,7 @@ whitelist:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
+  # - jekyll-feed
   - jekyll-include-cache
 
 

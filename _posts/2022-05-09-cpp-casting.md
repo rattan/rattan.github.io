@@ -142,7 +142,7 @@ void goo(Animal* p) {}	// 공통 작업만
 // Dog 를 위한 작업을 추가 하려면 위의 goo 를 변경하는것 보다
 // 아래처럼 만드는 것이 좋은 디자인 이다.
 void goo(Dog* p) {
-	goo(static_cast<Animal*>(p));
+	goo(static_cast<Animal*>(p));   // 부모 타입으로 캐스팅 하여(업 캐스팅) goo 작업 후
 	// Dog 만의 작업
 }
 
