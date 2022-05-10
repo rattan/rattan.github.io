@@ -42,23 +42,23 @@ int main() {
  - 객체의 상태를 변경하지 않는 모든 멤버함수는 반드시 상수함수로 만들어야 한다.
 ```cpp
 class Rect {
-	int x, y, w, h;
+    int x, y, w, h;
 public:
-	int getArea() const {
-		return w * h;
-	}
+    int getArea() const {
+        return w * h;
+    }
 };
 
-void foo(const Rect& r) {	// c++ 기본 기법: call by value 대신 const& 가 좋다.
-	int n = r.getArea();
+void foo(const Rect& r) {   // c++ 기본 기법: call by value 대신 const& 가 좋다.
+    int n = r.getArea();
 }
 
 int main() {
-	Rect r;					// 초기화 되었다고 가정하자.
+    Rect r;                 // 초기화 되었다고 가정하자.
 
-	int n = r.getArea();	// ok.
+    int n = r.getArea();    // ok.
 
-	foo(r);
+    foo(r);
 }
 ```
 ---
@@ -69,25 +69,25 @@ int main() {
 #include <iostream>
 
 class Point {
-	int x, y;
-	mutable char cache[32];
-	mutable bool cache_valid;
+    int x, y;
+    mutable char cache[32];
+    mutable bool cache_valid;
 public:
-	Point(int a = 0, int b = 0) : x(a), y(b), cache_valid(false) {}
+    Point(int a = 0, int b = 0) : x(a), y(b), cache_valid(false) {}
 
-	char* toString() const {	// 객체의 상태를 문자열로 반환하는 함수: java, c# 에 있는 개념
-		if (cache_valid == false) {
-			sprintf_s(cache, "%d %d", x, y);
-			cache_valid = true;
-		}
-		return cache;
-	}
+    char* toString() const {    // 객체의 상태를 문자열로 반환하는 함수: java, c# 에 있는 개념
+        if (cache_valid == false) {
+            sprintf_s(cache, "%d %d", x, y);
+            cache_valid = true;
+        }
+        return cache;
+    }
 };
 
 int main() {
-	Point p(1, 2);
-	std::cout << p.toString() << std::endl;
-	std::cout << p.toString() << std::endl;
+    Point p(1, 2);
+    std::cout << p.toString() << std::endl;
+    std::cout << p.toString() << std::endl;
 }
 ```
 ---
@@ -97,35 +97,35 @@ int main() {
 #include <iostream>
 
 struct Cache {          // 변하는 부분을 구조체로 빼낸다.
-	char data[32];
-	bool valid;
+    char data[32];
+    bool valid;
 };
 
 class Point {
-	int x, y;
-	Cache* pCache;
+    int x, y;
+    Cache* pCache;
 public:
-	Point(int a = 0, int b = 0) : x(a), y(b) {
-		pCache = new Cache;
-		pCache->valid = false;
-	}
+    Point(int a = 0, int b = 0) : x(a), y(b) {
+        pCache = new Cache;
+        pCache->valid = false;
+    }
 
-	char* toString() const {
-		if (pCache->valid == false) {
-			sprintf_s(pCache->data, "%d %d", x, y);
-			pCache->valid = true;
-		}
-		return pCache->data;
-	}
+    char* toString() const {
+        if (pCache->valid == false) {
+            sprintf_s(pCache->data, "%d %d", x, y);
+            pCache->valid = true;
+        }
+        return pCache->data;
+    }
 
-	~Point() {
-		delete pCache;
-	}
+    ~Point() {
+        delete pCache;
+    }
 };
 
 int main() {
-	Point p(1, 2);
-	std::cout << p.toString() << std::endl;
-	std::cout << p.toString() << std::endl;
+    Point p(1, 2);
+    std::cout << p.toString() << std::endl;
+    std::cout << p.toString() << std::endl;
 }
 ```
