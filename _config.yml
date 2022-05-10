@@ -194,7 +194,7 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 
 # Conversion
-markdown: GFM
+markdown: kramdown
 highlighter: rouge
 lsi: false
 excerpt_separator: "\n\n"
@@ -203,7 +203,7 @@ incremental: false
 
 # Markdown Processing
 kramdown:
-  input: GFM
+  input: kramdown
   hard_wrap: false
   auto_ids: true
   footnote_nr: 1
@@ -211,12 +211,12 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: true
-
-codery:
-  coderay_wrap: div
-  coderay_line_numbers: inline
-  coderay_line_numbers_start: 1
-  coderay_tab_width: 4
+  syntax_highlighter: coderay
+  syntax_highlighter_opts:
+    line_numbers: table
+    coderay_tab_width: 4
+    coderay_line_number_start: 1
+    coderay_line_numbers: true
 
 
 # Sass/SCSS
