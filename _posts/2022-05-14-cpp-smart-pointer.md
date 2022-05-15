@@ -2,7 +2,7 @@
 published: true
 title: "스마트 포인터"
 date: 2022-05-15 00:05:40 +9:00
-last_modified_at: 2022-05-15 00:05:42 +9:00
+last_modified_at: 2022-05-15 20:43:31 +9:00
 categories: cpp
 ---
 스마트 포인터
@@ -289,4 +289,188 @@ int main() {
 ```
 ---
 객체 관리의 어려움
-작성중 ~2022-05-15 00:05:36 +9:00
+```cpp
+#include <vector>
+#include <list>
+
+class Car {};
+
+std::vector<Car*> v;
+std::list<Car*> l;
+
+void foo() {
+    Car* p = new Car;
+        p->incStrong();
+    v.push_back(p);
+        p->incStrong();
+    l.push_back(p);
+        p->incStrong();
+    // 여기서는 더이상 p 가 필요하지 않다.
+    // 삭제해도 될까?
+    delete p;
+        p->decStrong();
+}
+
+int main() {
+    foo();
+}
+```
+---
+스마트 포인터가 참조계수를 관리하는 2가지 방식
+1. 참조계수를 위한 별도의 메모리 할당
+   - std::shared_ptr<>: c++ 표준, 모든 타입에 대해 사용 가능
+2. 객체 내부에 참조계수를 포함
+   - c++ 표준이 아님
+   - 각 라이브러리가 자체적으로 제공하는 기술
+     - 안드로이드
+     - RefBase
+     - sp
+```cpp
+#include <iostream>
+
+template<typename T>
+class sp {
+    T* obj;
+public:
+    sp(T* p = nullptr) : obj(p) {
+        if (obj) {
+            obj->incStrong();
+        }
+    }
+    sp(const T& p) :obj(p.obj) {
+        if (obj) {
+            obj->incStrong();
+        }
+    }
+    ~sp() {
+        if(obj) {
+            obj->decStrong();
+        }
+    }
+    T* operator->() {
+        return obj;
+    }
+    T& operator*() {
+        return *obj;
+    }
+};
+
+// 부모 포인터인 상태로 delete 하면 부모의 소멸자만 호출이 된다.
+// 자식 소멸자를 호출 되게 하려면 소멸자 자체가 가상함수이어야 한다.
+// 결국 모든 부모의 소멸자는 가상함수 이어야 한다.
+template<typename T>
+class RefBase {
+    int mCount;
+public:
+    RefBase() : mCount(0) {}
+    virtual ~RefBase() {}
+    void incStrong() {
+        ++mCount;
+    }
+    void decStrong() {
+        if (--mCount == 0) {
+            delete static_cast<T*>(this);
+        }
+    }
+};
+
+class Truck : public RefBase<Truck> {
+public:
+    ~Truck() {
+        std::cout << "~Truck" << std::endl;
+    }
+};
+
+int main() {
+    sp<Truck> p = new Truck;
+}   // ~Truck
+```
+[RefBase.h]: https://android.googlesource.com/platform/system/core/+/refs/heads/master/libutils/include/utils/RefBase.h
+> [RefBase.h][]
+---
+```cpp
+#include <iostream>
+
+template<typename T>
+class sp {
+    T* obj;
+public:
+    sp(T* p = nullptr) : obj(p) {
+        if (obj) {
+            obj->incStrong();
+        }
+    }
+    sp(const T& p) :obj(p.obj) {
+        if (obj) {
+            obj->incStrong();
+        }
+    }
+    ~sp() {
+        if(obj) {
+            obj->decStrong();
+        }
+    }
+    T* operator->() {
+        return obj;
+    }
+    T& operator*() {
+        return *obj;
+    }
+};
+
+// 참조계수를 조작하는 함수는 반드시 상수함수 이어야 한다.
+template<typename T>
+class RefBase {
+    mutable int mCount;
+public:
+    inline RefBase() : mCount(0) {}
+    inline virtual ~RefBase() {}
+    inline void incStrong() const {
+        ++mCount;
+    }
+    inline void decStrong() const {
+        // this: const RefBase* 이다.
+        // static_cast 는 상수를 제거할 수 없다.
+        // RefBase* => T* : ok.
+        // const RefBase* => const T* : ok.
+        // const RefBase* => T* : error.
+        if (--mCount == 0) {
+            delete static_cast<const T*>(this);
+            // delete static_cast<const_cast<RefBase*>>(this);
+        }
+    }
+};
+
+class Truck : public RefBase<Truck> {
+public:
+    ~Truck() {
+        std::cout << "~Truck" << std::endl;
+    }
+};
+
+int main() {
+    sp<Truck> p = new Truck;
+
+    const Truck t;
+    t.incStrong();  // 상수 객체도 참조계수 관리는 할 수 있어야 한다.
+}   // ~Truck
+    // ~Truck
+```
+---
+this 와 const
+```cpp
+class Test {
+    int x;
+public:
+    void foo() {        // void foo(Test* const this)
+        // this 자체는 const 이지만 this 가 가르키는 곳은 const 가 아니다
+        this->x = 10;
+        this = 0;       // error C2106: '=': 왼쪽 피연산자는 l-value이어야 합니다.
+    }
+
+    void goo() const {  // void goo(const Test *const this)
+        // this 도 const, this 가 가르키는 곳도 const
+        this->x = 10;   // error C3490: 'x'은(는) const 개체를 통해 액세스되고 있으므로 수정할 수 없습니다.
+    }
+};
+```
