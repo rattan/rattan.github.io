@@ -1,7 +1,7 @@
 ---
 title: "checked delete"
-date: 
-last_modified_at: 
+date: 2022-05-16 21:58:45 +9:00
+last_modified_at: 2022-05-16 21:58:47 +9:00
 categories: cpp
 ---
 Checked delete
