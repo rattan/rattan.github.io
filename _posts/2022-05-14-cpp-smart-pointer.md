@@ -456,21 +456,3 @@ int main() {
 }   // ~Truck
     // ~Truck
 ```
----
-this 와 const
-```cpp
-class Test {
-    int x;
-public:
-    void foo() {        // void foo(Test* const this)
-        // this 자체는 const 이지만 this 가 가르키는 곳은 const 가 아니다
-        this->x = 10;
-        this = 0;       // error C2106: '=': 왼쪽 피연산자는 l-value이어야 합니다.
-    }
-
-    void goo() const {  // void goo(const Test *const this)
-        // this 도 const, this 가 가르키는 곳도 const
-        this->x = 10;   // error C3490: 'x'은(는) const 개체를 통해 액세스되고 있으므로 수정할 수 없습니다.
-    }
-};
-```
