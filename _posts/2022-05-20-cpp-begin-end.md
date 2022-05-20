@@ -1,7 +1,7 @@
 ---
 title: "begin end"
-date: 
-last_modified_at: 
+date: 2022-05-20 22:15:26 +9:00
+last_modified_at: 2022-05-20 22:15:27 +9:00
 categories: cpp
 ---
 ```cpp
