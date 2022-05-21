@@ -1,5 +1,5 @@
 ---
-tile: "사용자 정의 상수"
+title: "사용자 정의 상수"
 date: 2022-05-21 17:45:07 +9:00
 last_modified_at: 2022-05-21 17:45:08 +9:00
 categories: cpp
