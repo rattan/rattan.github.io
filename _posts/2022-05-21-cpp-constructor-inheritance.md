@@ -1,7 +1,7 @@
 ---
 title: "생성자 상속"
-date: 
-last_modified_at: 
+date: 2022-05-21 17:55:13 +9:00
+last_modified_at: 2022-05-21 17:55:20 +9:00
 categories: cpp
 ---
 ```cpp
