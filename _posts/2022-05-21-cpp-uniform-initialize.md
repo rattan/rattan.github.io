@@ -1,7 +1,7 @@
 ---
 title: "일관된 초기화"
-date: 
-last_modified_at: 
+date: 2022-05-21 18:12:13 +9:00
+last_modified_at: 2022-05-21 18:12:14 +9:00
 categories: cpp
 ---
 일관된 초기화: Uniform initialize
