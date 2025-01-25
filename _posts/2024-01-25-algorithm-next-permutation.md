@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Next permutation"
+title: "Next permutation 2"
 date: 2024-01-25 18:45:00
 last_modified_at: 2024-01-25 18:45:00
 categories: algorithm
@@ -67,3 +67,5 @@ while (sc) {
 std::next_permutation(first, last, comp)
 ```
 stl algorithm 에도 동일한 방식의 알고리즘을 컨테이너에 사용할 수 있도록 구현 되어 있다.
+
+순열 구하는 [포스팅](https://rattan.github.io/algorithm/algorithm-next-permutation/)은 작년에 하나 적어 놓고도 또 까먹어서 또 썻네. 멍충🤪
