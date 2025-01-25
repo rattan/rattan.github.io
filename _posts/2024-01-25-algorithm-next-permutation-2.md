@@ -1,6 +1,6 @@
 ---
 published: true
-title: "Next permutation 2"
+title: "Next permutation"
 date: 2024-01-25 18:45:00
 last_modified_at: 2024-01-25 18:45:00
 categories: algorithm
