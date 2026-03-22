@@ -1,0 +1,557 @@
+/* ==========================================================================
+   Monochrome skin — blog: mutex
+   Clean white background with restrained indigo accent
+   ========================================================================== */
+
+/* Colors */
+$background-color       : #fafafa !default;
+$text-color             : #1a1a1a !default;
+$muted-text-color       : #6b7280 !default;
+$primary-color          : #4f6ef7 !default;
+$border-color           : #e5e7eb !default;
+$code-background-color  : #f3f4f6 !default;
+$code-background-color-dark: #f0f1f3 !default;
+$form-background-color  : #f9fafb !default;
+$footer-background-color: #f9fafb !default;
+$link-color             : #4f6ef7 !default;
+$link-color-hover       : #3b5bdb !default;
+$link-color-visited     : #5468cc !default;
+$masthead-link-color    : #374151 !default;
+$masthead-link-color-hover: #4f6ef7 !default;
+$navicon-link-color-hover: #e5e7eb !default;
+$notice-color           : #f3f4f6 !default;
+
+/* Light-theme syntax highlighting (base16) */
+$base00: #f3f4f6 !default;   /* background */
+$base01: #ede9f6 !default;   /* lighter bg */
+$base02: #e5e7eb !default;   /* selection bg */
+$base03: #9ca3af !default;   /* comments, line numbers */
+$base04: #6b7280 !default;   /* dark foreground */
+$base05: #1f2937 !default;   /* default foreground */
+$base06: #111827 !default;   /* light foreground */
+$base07: #fafafa !default;   /* light background */
+$base08: #c0392b !default;   /* red — errors/keywords */
+$base09: #d35400 !default;   /* orange — numbers */
+$base0a: #f39c12 !default;   /* yellow — functions/attributes */
+$base0b: #27ae60 !default;   /* green — strings */
+$base0c: #16a085 !default;   /* cyan — constants */
+$base0d: #2980b9 !default;   /* blue — functions */
+$base0e: #8e44ad !default;   /* purple — keywords, template */
+$base0f: #a93226 !default;   /* dark red */
+
+/* Typography variables */
+$global-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif !default;
+$header-font-family: "Syne", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif !default;
+$monospace: "JetBrains Mono", "Fira Code", Consolas, Monaco, monospace !default;
+$doc-font-size: 17 !default;
+$border-radius: 6px !default;
+
+/* ==========================================================================
+   Layout & Component Overrides
+   ========================================================================== */
+
+/* --- Masthead --- */
+.masthead {
+  background-color: $background-color;
+  border-bottom: 1px solid $border-color;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+
+  &__inner-wrap {
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+  }
+}
+
+.site-title {
+  font-family: $header-font-family;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: $text-color;
+
+  &:visited {
+    color: $text-color;
+  }
+}
+
+.site-subtitle {
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: $muted-text-color;
+  font-family: $global-font-family;
+}
+
+.greedy-nav {
+  a {
+    color: $masthead-link-color;
+  }
+
+  a:hover {
+    color: $primary-color;
+  }
+}
+
+.masthead__menu-item a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.3em 0.6em;
+  border-radius: $border-radius;
+  transition: color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    color: $primary-color;
+    background-color: rgba($primary-color, 0.06);
+    text-decoration: none;
+  }
+}
+
+/* --- Home hero --- */
+.home-hero {
+  margin-bottom: 2em;
+  padding: 1em 0 1.5em;
+  border-bottom: 1px solid $border-color;
+}
+
+.home-hero__tagline {
+  font-family: $global-font-family;
+  font-size: 0.85rem;
+  color: $muted-text-color;
+  letter-spacing: 0.04em;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* --- Archive (post list) --- */
+.archive {
+  &__subtitle {
+    font-family: $global-font-family;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $muted-text-color;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 0.8em;
+  }
+
+  &__item {
+    padding: 1.2em 0;
+    border-bottom: 1px solid $border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__item-title {
+    font-family: $header-font-family;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+
+    a {
+      color: $text-color;
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: $primary-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__item-excerpt {
+    color: $muted-text-color;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    margin-top: 0.5em;
+  }
+}
+
+/* --- Single post page --- */
+.page__title {
+  font-family: $header-font-family;
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: $text-color;
+
+  a {
+    color: inherit;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.page__meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: $muted-text-color;
+}
+
+.page__content {
+  font-size: 1rem;
+  line-height: 1.8;
+
+  h2 {
+    font-family: $header-font-family;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 0.4em;
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    color: $text-color;
+  }
+
+  h3 {
+    font-family: $header-font-family;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    color: $text-color;
+  }
+
+  h4 {
+    font-family: $header-font-family;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 1.5em;
+  }
+
+  p > code,
+  li > code,
+  td > code {
+    background: $code-background-color;
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    font-size: 0.82em;
+    padding: 0.15em 0.4em;
+    font-family: $monospace;
+  }
+
+  a {
+    color: $primary-color;
+    text-decoration: underline;
+
+    &:visited {
+      color: $link-color-visited;
+    }
+
+    &:hover {
+      color: $link-color-hover;
+    }
+  }
+}
+
+/* --- Reading progress bar (CSS scroll-driven animation) --- */
+body {
+  background-image: linear-gradient(
+    to right,
+    $primary-color 0%,
+    $primary-color 100%
+  );
+  background-size: 0% 2px;
+  background-position: top left;
+  background-repeat: no-repeat;
+  animation: reading-progress linear;
+  animation-timeline: scroll();
+}
+
+@keyframes reading-progress {
+  to {
+    background-size: 100% 2px;
+  }
+}
+
+/* --- Author sidebar --- */
+.author__avatar img {
+  border-radius: 50%;
+  border: 2px solid $border-color;
+}
+
+.author__name {
+  font-family: $header-font-family;
+  font-weight: 700;
+  font-size: 1rem;
+  color: $text-color;
+
+  a {
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.author__bio {
+  font-size: 0.78rem;
+  color: $muted-text-color;
+  line-height: 1.6;
+}
+
+/* --- Taxonomy tags/categories --- */
+.page__taxonomy {
+  margin: 1em 0;
+}
+
+.page__taxonomy-item {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $text-color;
+  background-color: $code-background-color;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: white;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+/* --- Code blocks --- */
+div.highlighter-rouge,
+figure.highlight {
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  margin: 1.5em 0;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  background-color: $code-background-color;
+
+  pre {
+    margin: 0;
+    padding: 1em;
+  }
+
+  code {
+    font-family: $monospace;
+    color: $text-color;
+  }
+}
+
+/* --- Blockquote --- */
+blockquote {
+  border-left: 3px solid $primary-color;
+  background-color: rgba($primary-color, 0.03);
+  padding: 0.8em 1.2em;
+  margin: 1.5em 0;
+  border-radius: 0 $border-radius $border-radius 0;
+  font-style: normal;
+  color: $muted-text-color;
+
+  p {
+    margin: 0;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+/* --- Table --- */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.85rem;
+  margin: 1.5em 0;
+
+  th {
+    background-color: $code-background-color;
+    color: $text-color;
+    font-weight: 600;
+    border: 1px solid $border-color;
+    padding: 0.5em 0.8em;
+  }
+
+  td {
+    border: 1px solid $border-color;
+    padding: 0.4em 0.8em;
+  }
+
+  tr:nth-child(even) td {
+    background-color: rgba($primary-color, 0.02);
+  }
+}
+
+/* --- Footer --- */
+.page__footer {
+  border-top: 1px solid $border-color;
+  font-size: 0.72rem;
+  background-color: $footer-background-color;
+}
+
+.page__footer-follow {
+  margin-top: 1.5em;
+
+  .social-icons a {
+    color: $muted-text-color;
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+/* --- Greedy nav mobile menu --- */
+.greedy-nav .visible-links a:hover::before,
+.greedy-nav button:hover {
+  background: $primary-color;
+}
+
+.greedy-nav__toggle {
+  color: $text-color;
+}
+
+.hidden-links {
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  a {
+    color: $text-color;
+    padding: 0.5em 0.8em;
+    border-bottom: 1px solid $border-color;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background-color: $code-background-color;
+      color: $primary-color;
+    }
+  }
+}
+
+/* --- Pagination --- */
+.pagination {
+  margin: 2em 0;
+  font-size: 0.85rem;
+
+  .page-item {
+    display: inline-block;
+
+    a,
+    span {
+      color: $text-color;
+      border: 1px solid $border-color;
+      padding: 0.4em 0.8em;
+      margin-right: 0.3em;
+      border-radius: $border-radius;
+      transition: all 0.15s ease;
+    }
+
+    a:hover {
+      background-color: $primary-color;
+      border-color: $primary-color;
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  .page-item.active span {
+    background-color: $primary-color;
+    border-color: $primary-color;
+    color: white;
+  }
+}
+
+/* --- Search form --- */
+.search__form {
+  input[type="search"] {
+    background-color: $form-background-color;
+    border: 1px solid $border-color;
+    color: $text-color;
+
+    &::placeholder {
+      color: $muted-text-color;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    }
+  }
+}
+
+/* --- Buttons --- */
+.btn {
+  color: white;
+  background-color: $primary-color;
+  border: 1px solid $primary-color;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.5em 1em;
+  border-radius: $border-radius;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background-color: $link-color-hover;
+    border-color: $link-color-hover;
+    text-decoration: none;
+  }
+
+  &--primary {
+    color: white;
+    background-color: $primary-color;
+    border-color: $primary-color;
+
+    &:hover {
+      background-color: $link-color-hover;
+      border-color: $link-color-hover;
+    }
+  }
+}
+
+/* --- Links --- */
+a {
+  color: $link-color;
+  text-decoration: underline;
+
+  &:visited {
+    color: $link-color-visited;
+  }
+
+  &:hover {
+    color: $link-color-hover;
+  }
+}
+
+/* --- Social icons --- */
+.author__urls.social-icons i,
+.author__urls.social-icons .svg-inline--fa,
+.page__footer-follow .social-icons i,
+.page__footer-follow .social-icons .svg-inline--fa {
+  color: inherit;
+}
+
+/* --- Utterances dark theme compatibility --- */
+.page__comments {
+  margin-top: 2em;
+}
